@@ -271,6 +271,10 @@
     components: {
       AppHeader,
       AuthModal,
-    }
+    },
+    // life-cycle method for when the component is created
+    created() {
+      this.$store.dispatch('init_login')
+    },
   }
 </script>

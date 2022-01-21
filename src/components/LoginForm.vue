@@ -45,15 +45,25 @@ export default {
     }
   },
   methods: {
-    login(values) {
+    async login(values) {
         this.login_show_alert = true; // active alert visibility
         this.login_in_submission = true; // disable form button
         this.login_alert_variant = 'bg-blue-500';
         this.login_alert_msg = 'Please wait! We are logging you in.';
 
+        try {
+          await this.$store.dispatch('login', values);
+        } catch (error) {
+          this.login_in_submission = false; // disable form button
+          this.login_alert_variant = 'bg-red-500';
+          this.login_alert_msg = 'Invalid login details.';
+          return;
+        }
+
         this.login_alert_variant = 'bg-green-500';
         this.login_alert_msg = 'Success! You are now logged in.';
-        console.log(values);
+        
+        window.location.reload();
     }
   }
 }

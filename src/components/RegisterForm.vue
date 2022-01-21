@@ -35,7 +35,8 @@
     <div class="mb-3">
       <label class="inline-block mb-2">Password</label>
       <vee-field name="password" :bails="false" v-slot="{ field, errors }">
-        <input class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
+        <input type="password"
+          class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
           duration-500 focus:outline-none focus:border-black rounded"
         placeholder="Password" v-bind="field" />
         <div class="text-red-600" v-for="error in errors" :key="error">
@@ -83,39 +84,50 @@
 </template>
 
 <script>
-export default {
-  name: 'RegisterForm',
-  data() {
-    return {
-        registerSchema: {
-            name: 'required|min:3|max:100|alpha_spaces',
-            email: 'required|min:3|max:100|email',
-            age: 'required|min_value:18|max_value:100',
-            password: 'required|min:3|max:100',
-            confirm_password: 'passwords_mismatch:@password',
-            country: 'required|country_excluded:Antarctica', //excluded: list of values the input must not match
-            tos: 'tos'
-        },
-        userData: {
-            country: 'USA',
-        },
-        reg_in_submission: false, // keep track if registration form is in submisson
-        reg_show_alert: false, // toggle visiblity of alert box
-        reg_alert_color: 'bg-blue-500', // indicate the form submission is in progress
-        reg_alert_msg: 'Please wait! Your account is being created.' // message of alert box
-    };
-  },
-  methods: {
-    register(values) {
-        this.reg_show_alert = true; // active alert visibility
-        this.reg_in_submission = true; // disable form button
-        this.reg_alert_variant = 'bg-blue-500';
-        this.reg_alert_msg = 'Please wait! Your account is being created.';
+  export default {
+    name: 'RegisterForm',
+    data() {
+      return {
+          registerSchema: {
+              name: 'required|min:3|max:100|alpha_spaces',
+              email: 'required|min:3|max:100|email',
+              age: 'required|min_value:18|max_value:100',
+              password: 'required|min:3|max:100',
+              confirm_password: 'passwords_mismatch:@password',
+              country: 'required|country_excluded:Antarctica', //excluded: list of values the input must not match
+              tos: 'tos'
+          },
+          userData: {
+              country: 'USA',
+          },
+          reg_in_submission: false, // keep track if registration form is in submisson
+          reg_show_alert: false, // toggle visiblity of alert box
+          reg_alert_color: 'bg-blue-500', // indicate the form submission is in progress
+          reg_alert_msg: 'Please wait! Your account is being created.' // message of alert box
+      };
+    },
+    methods: {
+      async register(values) {
+          this.reg_show_alert = true; // active alert visibility
+          this.reg_in_submission = true; // disable form button
+          this.reg_alert_color = 'bg-blue-500';
+          this.reg_alert_msg = 'Please wait! Your account is being created.';
 
-        this.reg_alert_variant = 'bg-green-500';
-        this.reg_alert_msg = 'Success! Your account has been created.';
-        console.log(values);
+          try {
+            // name of the dispatch action + payload data
+            await this.$store.dispatch('register', values);
+          } catch(error) {
+            this.reg_in_submission = false;
+            this.reg_alert_color = 'bg-red-500';
+            this.reg_alert_msg = 'An unexpected error ocurred. Please try again later.';
+            return; // this return will stop the function from executing further
+          }
+
+          this.reg_alert_color = 'bg-green-500';
+          this.reg_alert_msg = 'Success! Your account has been created.';
+          
+          window.location.reload();
+      }
     }
   }
-}
 </script>
