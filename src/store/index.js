@@ -41,8 +41,8 @@ export default createStore({
     },
     async login({ commit }, payload) {
       // send request to firebase with the payload data
-      auth.signInWithEmailAndPassword(payload.email, payload.password);
-
+      await auth.signInWithEmailAndPassword(payload.email, payload.password);
+      
       commit('toggleAuth');
     },
     init_login({ commit }) {

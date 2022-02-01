@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'; // core module
 import 'firebase/auth'; // authentication module
 import 'firebase/firestore'; // firestore database
+import 'firebase/storage'; // cloud storage
 
 const firebaseConfig = {
   apiKey: "AIzaSyBL-Vq1oR3CrCe0NcMPJBM3949BBos_q8Y",
@@ -18,11 +19,16 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+const storage = firebase.storage();
+
 // the collection doesn't need to exist for Firebase to select it
 const usersCollection = db.collection('users');
+const songsCollection = db.collection('songs');
 
 export {
     auth, 
     db,
-    usersCollection
+    usersCollection,
+    songsCollection,
+    storage
 }
