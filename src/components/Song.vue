@@ -1,9 +1,9 @@
 <template>
 	<main>
-		<div>
-			<!-- The params object will hold the dynamic segments in the route -->
-			{{ $route.params.id }}
-		</div>
+    <div>
+      <!-- The params object will hold the dynamic segments in the route -->
+      {{ $route.params.id }}
+    </div>
 		<!-- Music Header -->
 	  <section class="w-full mb-8 py-14 text-center text-white relative">
 	    <div class="absolute inset-0 w-full h-full box-border bg-contain music-bg"
@@ -19,6 +19,7 @@
 	        <!-- Song Info -->
 	        <div class="text-3xl font-bold">Song Title: {{ song.modified_name }}</div>
 	        <div>{{ song.genre }} - いいわけは地獄できく</div>
+	        <div class="song-price">{{ $n(1, 'currency', 'zh') }}</div>
 	      </div>
 	    </div>
 	  </section>
@@ -27,7 +28,8 @@
 	    <div class="bg-white rounded border border-gray-200 relative flex flex-col">
 	      <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
 	        <!-- Comment Count -->
-	        <span class="card-title">Comments ({{ song.comment_count }})</span>
+	        <!-- <span class="card-title">Comments ({{ song.comment_count }})</span> -->
+	        <span class="card-title">{{ $tc('song.comment_count', song.comment_count, { count: song.comment_count }) }}</span>
 	        <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
 	      </div>
 	      <div class="p-6">
@@ -50,8 +52,8 @@
 	        <select v-model="sort"
 	          class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition
 	          duration-500 focus:outline-none focus:border-black rounded">
-	          <option value="1">Latest</option>
-	          <option value="2">Oldest</option>
+	          <option value="1" v-t="{ path: 'song.latest' }"></option>
+	          <option value="2" v-t="{ path: 'song.oldest' }"></option>
 	        </select>
 	      </div>
 	    </div>

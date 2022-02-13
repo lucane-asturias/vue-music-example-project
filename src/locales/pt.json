@@ -1,0 +1,47 @@
+{
+  "auth": {
+    "login": "Entrar",
+    "register": "Registrar",
+    "your_account": "Sua conta"
+  },
+  "header": {
+    "about": "Sobre",
+    "login_register": "Entrar / Registrar",
+    "logout": "Sair",
+    "manage": "Gerenciar",
+    "music": "Música"
+  },
+  "home": {
+    "listen": "Ouça uma boa música!",
+    "songs": "Sons"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Senha",
+    "submit": "Enviar"
+  },
+  "manage": {
+    "my_songs": "Minhas músicas"
+  },
+  "register": {
+    "TOS": "termos de serviço da música",
+    "accept": "Eu aceito os {0}",
+    "age": "Idade",
+    "confirm_password": "Confirmar Senha",
+    "country": "País",
+    "email": "Email",
+    "name": "Nome",
+    "password": "Senha",
+    "submit": "Enviar"
+  },
+  "song": {
+    "artist": "Nome do Artista:",
+    "comment_count": "Nenhum comentário | 1 comentário | {count} comentários",
+    "latest": "Mais recente",
+    "oldest": "Mais antigo",
+    "title": "Título da Música:"
+  },
+  "upload": {
+    "drop_files": "Arraste suas músicas em mp3 aqui"
+  }
+}

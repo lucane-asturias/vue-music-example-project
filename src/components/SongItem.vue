@@ -5,9 +5,9 @@
       <!-- /song/jW3N2QiCpFi4sply21oC -->
       <router-link :to="{ name: 'song', params: { id: song.docID } }" 
         class="font-bold block text-gray-600">
-        Song Title: {{ song.modified_name }}
+        {{ $t('song.title') }} {{ song.modified_name }}
       </router-link>
-      <span class="text-gray-500 text-sm">Artist Name: {{ song.display_name }}</span>
+      <span class="text-gray-500 text-sm">{{ $t('song.artist') }} {{ song.display_name }}</span>
     </div>
 
     <div class="text-gray-600 text-lg">

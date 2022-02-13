@@ -1,0 +1,47 @@
+{
+  "auth": {
+    "login": "ログイン",
+    "register": "登録",
+    "your_account": "お客様のアカウント"
+  },
+  "header": {
+    "about": "について",
+    "login_register": "ログイン / 新規登録",
+    "logout": "ログアウト",
+    "manage": "管理する",
+    "music": "音楽"
+  },
+  "home": {
+    "listen": "素敵な音楽を聴く！",
+    "songs": "歌曲"
+  },
+  "login": {
+    "email": "メール",
+    "password": "パスワード",
+    "submit": "提出する"
+  },
+  "manage": {
+    "my_songs": "私の曲"
+  },
+  "register": {
+    "TOS": "同意します",
+    "accept": "私は音楽の利用規約に{0}",
+    "age": "年齢",
+    "confirm_password": "パスワードの確認",
+    "country": "国名",
+    "email": "メール",
+    "name": "名前",
+    "password": "パスワード",
+    "submit": "提出する"
+  },
+  "song": {
+    "artist": "アーティストの名 : ",
+    "comment_count": "コメントはありません | 1件のコメント | {count}件のコメント",
+    "latest": "最新コメント",
+    "oldest": "最古コメント",
+    "title": "曲名:"
+  },
+  "upload": {
+    "drop_files": "MP3音楽をここにドラッグしてください"
+  }
+}

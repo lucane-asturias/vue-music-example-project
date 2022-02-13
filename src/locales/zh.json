@@ -1,0 +1,47 @@
+{
+  "auth": {
+    "login": "注册",
+    "register": "登录",
+    "your_account": "您的账户"
+  },
+  "header": {
+    "about": "关于",
+    "login_register": "登录 / 注册",
+    "logout": "登出",
+    "manage": "管理",
+    "music": "音乐"
+  },
+  "home": {
+    "listen": "聆听伟大的音乐!",
+    "songs": "歌曲"
+  },
+  "login": {
+    "email": "邮件",
+    "password": "密码",
+    "submit": "提交"
+  },
+  "manage": {
+    "my_songs": "我的歌曲"
+  },
+  "register": {
+    "TOS": "服务条款",
+    "accept": "我接受音乐的{0}",
+    "age": "年龄",
+    "confirm_password": "确认密码",
+    "country": "国家",
+    "email": "邮件",
+    "name": "名字",
+    "password": "密码",
+    "submit": "提交"
+  },
+  "song": {
+    "artist": "艺术家名字",
+    "comment_count": "没有评论 | 1条评论 | {count}条评论",
+    "latest": "最新的评论",
+    "oldest": "最古老的评论",
+    "title": "歌曲名称:"
+  },
+  "upload": {
+    "drop_files": "拖动你的MP3音乐到这里"
+  }
+}

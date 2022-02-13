@@ -7,12 +7,14 @@ import { auth } from './includes/firebase';
 import Icon from './directives/icon'
 import './assets/tailwind.css';
 import './assets/main.css';
+import i18n from './includes/i18n';
+import './registerServiceWorker'
 
 let app;
 // wait firebase to initialize authenticate the user 
 auth.onAuthStateChanged(() => {
   if (!app) {
-    app = createApp(App);
+    app = createApp(App).use(i18n);
     // The use method allow to register a plug-in
     app.use(store);
     app.use(router);

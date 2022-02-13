@@ -117,10 +117,11 @@ export default {
       const storageRef = storage.ref();
       // a relative child path to delete the file
       const songRef = storageRef.child(`songs/${this.song.original_name}`);
+
       await songRef.delete();
 
       // delete data from the collection
-      await songsCollection.doc(this.song.docID).update(values);
+      await songsCollection.doc(this.song.docID).delete();
 
       this.removeSong(this.index);
     }
