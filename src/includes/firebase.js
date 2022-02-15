@@ -18,8 +18,14 @@ firebase.initializeApp(firebaseConfig);
 // variables that references auth and db from firebase
 const auth = firebase.auth();
 const db = firebase.firestore();
-
 const storage = firebase.storage();
+
+/* This'll keep a copy of the database in the browser, which gives offline suport. If the user disconnects
+   from the internet, the SDK will switch to using the local copy on the user's machine (persistance data) */
+db.enablePersistence().catch((error) => {
+  // if firebase its unable to keep track of data on the user's browser, which means offsup won't work
+  console.log(`Firebase persistance error ${error.code}`);
+});
 
 // note: the collection doesn't need to exist for Firebase to select it
 const usersCollection = db.collection('users');

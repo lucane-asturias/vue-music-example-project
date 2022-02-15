@@ -55,7 +55,7 @@ export default {
   methods: {
     upload($event) {
       this.is_dragover = false;
-      console.log($event)
+      // console.log($event)
       // converting both objects spreading to an array
       const files = $event.dataTransfer 
       ? [...$event.dataTransfer.files] // if event drag and drop
@@ -65,6 +65,19 @@ export default {
         if (file.type !== 'audio/mpeg') {
           return; // end the current iteration
         }
+
+        if (!navigator.onLine) { // if user is not online, they can't upload files
+          this.uploads.push({
+            task: {},
+            current_progress: 100,
+            name: file.name,
+            color: 'bg-red-400',
+            icon: 'fas fa-times',
+            text_class: 'text-red-400',
+          });
+          return;
+        }
+
         // creating reference which represents the path to storage (aka  the bucketURL) 
         // to let firebase know where to upload the file
         const storageRef = storage.ref();
@@ -72,7 +85,6 @@ export default {
         const songsRef = storageRef.child(`songs/${file.name}`);
         // result of uploading file to firebase storage
         const task = songsRef.put(file);
-        console.log(task);
         // get last item in the array subtracting by one
         const uploadIndex = this.uploads.push({
           task,
@@ -121,7 +133,7 @@ export default {
         });
       })
 
-      console.log(files);
+      // console.log(files);
     },
     cancelUploads() { // not using ref
       this.uploads.forEach((upload) => {
