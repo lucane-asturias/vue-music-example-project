@@ -58,7 +58,9 @@
     name: "Header",
     computed: {
       // state property to keep track if the user is logged in
-      ...mapState(['userLoggedIn']),
+      ...mapState({
+        userLoggedIn: (state) => state.auth.userLoggedIn,
+      }),
     },
     methods: {
       ...mapMutations(['toggleAuthModal']),

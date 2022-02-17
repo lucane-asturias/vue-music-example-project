@@ -1,9 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/views/Home.vue';
-import About from '@/views/About.vue';
-import Manage from '@/views/Manage.vue';
-import Song from '@/components/Song.vue';
+// import Home from '@/views/Home.vue';
+// import About from '@/views/About.vue';
+// import Manage from '@/views/Manage.vue';
+// import Song from '@/components/Song.vue';
 import store from '@/store';
+
+// dynamically load component when its needed, which will proceed to load the chunk file
+const Home = () => import('@/views/Home.vue');
+const About = () => import('@/views/About.vue');
+const Manage = () => import(/* webpackChunkName: 'groupedChunk' */'@/views/Manage.vue'); 
+const Song = () => import(/* webpackChunkName: 'groupedChunk' */'@/components/Song.vue'); 
 
 const routes = [
   {
@@ -59,7 +65,7 @@ router.beforeEach((to, from, next) => {
     return; // end the function
   }
 
-  if (store.state.userLoggedIn) {
+  if (store.state.auth.userLoggedIn) {
     next();
   } else {
     next({ name: 'home' });

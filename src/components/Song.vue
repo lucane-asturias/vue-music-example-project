@@ -95,7 +95,10 @@ export default {
 		};
   },
   computed: {
-  	...mapState(['userLoggedIn']),
+  	// ...mapState(['userLoggedIn']),
+    ...mapState({
+      userLoggedIn: (state) => state.auth.userLoggedIn,
+    }),
   	...mapGetters(['playing']),
   	sortedComments() {
   		// creating a copy of the original array and sorting it
@@ -155,21 +158,26 @@ export default {
   		});
   	}
   },
-  async created() {
+  // async created() {
+  async beforeRouteEnter(to, from, next) { // use beforeRouterEnter to make perceived performance faster
   	// get the specific doc from songs collection based on the route parameter id
-  	const docSnapshot = await songsCollection.doc(this.$route.params.id).get();
-  	// if the document is not in the collection
-  	if (!docSnapshot.exists) {
-  		this.$router.push({ name: 'home' });
-  		return; // prevent this if block to running further
-  	}
+  	const docSnapshot = await songsCollection.doc(to.params.id).get();
 
-  	const { sort } = this.$route.query;
-  	// checking if the value is valid
-  	this.sort = sort === '1' || sort === '2' ? sort : '1';
+    next((vm) => {
+      /* * Accessing the components data via the VM parameter, 
+       * * which it's a context to the component data, like the this keyword */
+      if (!docSnapshot.exists) { // if the document is not in the collection
+        vm.$router.push({ name: 'home' });
+        return; // prevent this if block to running further
+      }
 
-  	this.song = docSnapshot.data();
-  	this.getComments();
+      const { sort } = vm.$route.query;
+      // checking if the value is valid
+      vm.sort = sort === '1' || sort === '2' ? sort : '1';
+
+      vm.song = docSnapshot.data();
+      vm.getComments();
+    });
   },
   watch: { // tracks changes of properties in this component
   	sort(newVal) {
