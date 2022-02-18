@@ -32,7 +32,7 @@ a:hover {
 }
 
 .introduction-bg {
-  /*animation: slide 50s linear infinite;*/
+  animation: slide 50s linear infinite;
   will-change: background-position;
   z-index: -1;
 }
